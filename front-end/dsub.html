@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Mining Data - EcoTrack</title>
+  <link rel="stylesheet" href="css/onlydatasub.css">
+  <link rel="stylesheet" href="css/common.css">
+  <script src="js/common.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo" class="logo-img"> <!-- Replace with your logo -->
+      <span class="project-name">EcoTrack: Reducing Coal Emissions</span>
+    </div>
+    <div class="nav-links">
+      <a href="homemine.html">Home</a>
+      <a href="submit_data.html">Submit Data</a>
+      <a href="visualization.html">Emission Visualization</a>
+      <a href="strategies.html">Reduction Strategies</a>
+      <a href="about_us.html">About Us</a>
+      <div class="profile-section">
+        <a href="profile.html" class="profile-btn">Profile</a>
+        <div class="profile-dropdown" id="profileDropdown">
+          <!-- Dynamic content -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="form-container">
+    <h2>Submit Mining Data</h2>
+    <p>Fill in the details below to calculate your mining operations' carbon emissions. This data will contribute to tracking and reducing environmental impact.</p>
+
+    <form action="../backend/submit_data_backend.php" method="POST">
+      <!-- Company Information -->
+      <fieldset>
+        <legend>Company Information</legend>
+        <label for="company_name">Company Name:</label>
+        <input type="text" id="company_name" name="company_name" placeholder="Enter your company name" required>
+        
+        <label for="contact_person">Contact Person:</label>
+        <input type="text" id="contact_person" name="contact_person" placeholder="Enter contact person's name" required>
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+
+        <label for="company_location">Location:</label>
+        <input type="text" id="company_location" name="company_location" placeholder="City, State" required>
+      </fieldset>
+
+      <!-- Mining Operation Details -->
+      <fieldset>
+        <legend>Mining Operation Details</legend>
+        <label for="mining_type">Type of Mining:</label>
+        <select id="mining_type" name="mining_type" required>
+          <option value="underground">Underground</option>
+          <option value="open-pit">Open-Pit</option>
+          <option value="surface">Surface</option>
+        </select>
+
+        <label for="area_mined">Mined Area (sq. km):</label>
+        <input type="number" id="area_mined" name="area_mined" step="0.01" required>
+
+        <label for="production_capacity">Production Capacity (tons/year):</label>
+        <input type="number" id="production_capacity" name="production_capacity" required>
+      </fieldset>
+
+      <!-- Carbon Emissions Data -->
+      <fieldset>
+        <legend>Carbon Emissions Data</legend>
+        <p>Please input resource consumption data for your operations.</p>
+
+        <label for="diesel_consumption">Diesel Consumption (liters):</label>
+        <input type="number" id="diesel_consumption" name="diesel_consumption" step="0.01" required>
+
+        <label for="petrol_consumption">Petrol Consumption (liters):</label>
+        <input type="number" id="petrol_consumption" name="petrol_consumption" step="0.01" required>
+
+        <label for="coal_consumption">Coal Consumption (tons):</label>
+        <input type="number" id="coal_consumption" name="coal_consumption" step="0.01" required>
+
+        <label for="electricity_usage">Electricity Usage (kWh):</label>
+        <input type="number" id="electricity_usage" name="electricity_usage" step="0.01" required>
+
+        <label for="natural_gas_usage">Natural Gas Usage (cubic meters):</label>
+        <input type="number" id="natural_gas_usage" name="natural_gas_usage" step="0.01">
+
+        <!-- Added Fuel Usage Field -->
+        <label for="fuel_usage">Fuel Usage (tons):</label>
+        <input type="number" id="fuel_usage" name="fuel_usage" step="0.01" required>
+
+        <p class="hint">Emission factors are pre-applied based on industry standards for accuracy.</p>
+      </fieldset>
+
+      <!-- Sustainability Initiatives -->
+      <fieldset>
+        <legend>Sustainability Initiatives</legend>
+        <label for="sustainability_initiatives">Describe Sustainability Efforts:</label>
+        <textarea id="sustainability_initiatives" name="sustainability_initiatives" rows="4" placeholder="Outline any carbon offset programs or green initiatives implemented."></textarea>
+      </fieldset>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button type="submit" class="submit-btn">Calculate Emissions</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Data Visualization Section -->
+  <div class="chart-container">
+    <h2>Emission Data Visualization</h2>
+    <canvas id="emissionChart" width="400" height="200"></canvas>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-left">
+        <img src="images/sih.png" alt="SIH 2024 Logo" class="footer-logo">
+        <img src="images/moe.jpeg" alt="MoE Logo" class="footer-logo">
+        <p>Presented by <strong>Team MedicoTechs</strong></p>
+      </div>
+      <div class="footer-right">
+        <div class="footer-links">
+          <a href="homemine.html">Home</a>
+          <a href="about_us.html">About Us</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy_policy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/fetch_and_display_chart.js"></script>
+</body>
+</html>

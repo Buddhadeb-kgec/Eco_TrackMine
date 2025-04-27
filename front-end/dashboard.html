@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Data Dashboard</h1>
+    <canvas id="miningChart"></canvas>
+
+    <script>
+        // Fetch data from the server
+        fetch('../back-end/submit data/fetch_data.php')
+            .then(response => response.json())
+            .then(data => {
+                const labels = data.map(item => item.company_name);
+                const minedAreas = data.map(item => item.mined_area);
+                const totalEmissions = data.map(item => item.total_emissions);
+
+                // Render Chart.js bar chart
+                const ctx = document.getElementById('miningChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Mined Area (sq. km)',
+                                data: minedAreas,
+                                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Total Emissions',
+                                data: totalEmissions,
+                                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+</html>

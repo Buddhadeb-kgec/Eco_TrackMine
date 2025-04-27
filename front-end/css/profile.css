@@ -1,0 +1,95 @@
+/* General Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #2c3e50, #bdc3c7);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .profile-container {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  /* Header Styling */
+  .profile-container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #2c3e50;
+  }
+  
+  /* Profile Details */
+  .profile-details {
+    margin-bottom: 30px;
+  }
+  
+  .profile-details h2 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #555;
+  }
+  
+  /* Profile Actions */
+  .profile-actions h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #2c3e50;
+    border-bottom: 2px solid #2c3e50;
+    padding-bottom: 5px;
+  }
+  
+  .profile-actions ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .profile-actions ul li {
+    margin: 10px 0;
+  }
+  
+  .profile-actions ul li a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #2c3e50;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .profile-actions ul li a:hover {
+    background-color: #2c3e50;
+    color: #fff;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .profile-container {
+      padding: 15px 20px;
+    }
+  
+    .profile-container h1 {
+      font-size: 1.5rem;
+    }
+  
+    .profile-details h2,
+    .profile-actions h3 {
+      font-size: 1rem;
+    }
+  
+    .profile-actions ul li a {
+      font-size: 0.9rem;
+    }
+  }
+  

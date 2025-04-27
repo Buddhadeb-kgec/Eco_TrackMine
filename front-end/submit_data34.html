@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Mining Data - EcoTrack</title>
+  <link rel="stylesheet" href="css/common.css">
+  <script src="js/common.js" defer></script>
+</head>
+<body>
+  <!-- Dark Horizontal Bar -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo" class="logo-img"> <!-- Replace with your logo image -->
+      <span class="project-name">EcoTrack: Reducing Coal Emissions</span>
+    </div>
+    <div class="nav-links">
+      <a href="homemine.html">Home</a>
+      <a href="submit_data.html">Submit Mining Data</a>
+      <a href="visualization.html">Carbon Emission Visualization</a>
+      <a href="#">About Us</a>
+      <!-- Profile Button -->
+      <div class="profile-section">
+        <a href="#" class="profile-btn">Profile</a>
+        <div class="profile-dropdown" id="profileDropdown">
+          <!-- This will be dynamically populated -->
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Mining Data Submission Form -->
+  <div class="form-container">
+    <h2>Submit Mining Data</h2>
+    <p>Please fill in the details of your mining operations. This information will be used to calculate your carbon emissions and help track your environmental impact.</p>
+
+    <form action="submit_data_backend.php" method="POST">
+      <!-- Mining Company Details -->
+      <fieldset>
+        <legend>Company Information</legend>
+        <label for="company_name">Company Name:</label>
+        <input type="text" id="company_name" name="company_name" required>
+        
+        <label for="contact_person">Contact Person:</label>
+        <input type="text" id="contact_person" name="contact_person" required>
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="company_location">Location:</label>
+        <input type="text" id="company_location" name="company_location" required>
+      </fieldset>
+
+      <!-- Mining Operation Details -->
+      <fieldset>
+        <legend>Mining Operation Details</legend>
+        <label for="mining_type">Type of Mining:</label>
+        <select id="mining_type" name="mining_type" required>
+          <option value="underground">Underground</option>
+          <option value="open-pit">Open-Pit</option>
+          <option value="surface">Surface</option>
+        </select>
+
+        <label for="area_mind">Mined Area:</label>
+        <input type="text" id="area_mind" name="area_mind" required>
+
+        <label for="production_capacity">Production Capacity (tons/year):</label>
+        <input type="number" id="production_capacity" name="production_capacity" required>
+      </fieldset>
+
+      <!-- Carbon Emissions Data -->
+      <fieldset>
+        <legend>Carbon Emissions Data</legend>
+        <label for="emission_factor">Emission Factor (kg CO2 per ton of material):</label>
+        <input type="number" id="emission_factor" name="emission_factor" required>
+
+        <label for="total_emissions">Total Emissions (kg CO2):</label>
+        <input type="number" id="total_emissions" name="total_emissions" required>
+
+        <label for="carbon_credits">Estimated Carbon Credits:</label>
+        <input type="number" id="carbon_credits" name="carbon_credits">
+      </fieldset>
+
+      <!-- Additional Information -->
+      <fieldset>
+        <legend>Additional Information</legend>
+        <label for="sustainability_initiatives">Sustainability Initiatives:</label>
+        <textarea id="sustainability_initiatives" name="sustainability_initiatives" rows="4" cols="50" placeholder="Describe any sustainability measures or carbon offset programs you're implementing."></textarea>
+      </fieldset>
+
+      <!-- Submit Button -->
+      <div class="form-actions">
+        <button type="submit" class="submit-btn">Submit Data</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-left">
+        <img src="images/sih.png" alt="SIH 2024 Logo" class="footer-logo"> 
+        <img src="images/moe.jpeg" alt="MoE Logo" class="footer-logo">
+        <p>Presented by <strong>Team MedicoTechs</strong></p>
+      </div>
+      <div class="footer-right">
+        <div class="footer-links">
+          <a href="homemine.html">Home      |</a>
+          <a href="#">  About Us      |</a>
+          <a href="#">  Contact      |</a>
+          <a href="#">  Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumption Data Entry</title>
+</head>
+<body>
+    <h1>Enter Your Consumption Data</h1>
+    <form id="consumptionForm">
+        <label for="fuel">Fuel Consumption:</label>
+        <input type="number" id="fuel" name="fuel"><br><br>
+
+        <label for="petrol">Petrol Consumption:</label>
+        <input type="number" id="petrol" name="petrol"><br><br>
+
+        <label for="diesel">Diesel Consumption:</label>
+        <input type="number" id="diesel" name="diesel"><br><br>
+
+        <label for="electricity">Electricity Consumption:</label>
+        <input type="number" id="electricity" name="electricity"><br><br>
+
+        <button type="button" onclick="submitData()">Submit</button>
+    </form>
+
+    <canvas id="consumptionChart" width="400" height="200"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../front-end/js/chhotolok.js"></script>
+</body>
+</html>

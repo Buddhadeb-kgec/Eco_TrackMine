@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carbon Emission Visualization</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/visual.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* CSS Styling */
+    .project-name {
+      font-size: 26px;
+      font-weight: 600;
+      text-transform: none;
+      background: linear-gradient(45deg, #2ecc71, #3498db);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1a1a1a;
+      color: #ecf0f1;
+    }
+
+    .chart-container {
+      width: 90%;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #ffffff11;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 28px;
+      color: #3498db;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn:hover {
+      background-color: #2980b9;
+    }
+
+    .btn.active {
+      background-color: #2ecc71;
+      color: #fff;
+    }
+
+    canvas {
+      margin-top: 20px;
+    }
+
+    footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo" class="logo-img">
+      <span class="project-name">EcoTrack: Reducing Carbon Emissions</span>
+    </div>
+    <div class="nav-links">
+      <a href="homemine.html">Home</a>
+      <a href="submit_data.html">Submit Mining Data</a>
+      <a href="visualization.html">Carbon Emission Visualization</a>
+      <a href="#">About Us</a>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <h2>Emission Data Visualization</h2>
+    <div class="button-group">
+      <button class="btn" id="btn-month" onclick="updateChart('month')">1 Month</button>
+      <button class="btn" id="btn-six-months" onclick="updateChart('six_months')">6 Months</button>
+      <button class="btn" id="btn-year" onclick="updateChart('year')">1 Year</button>
+    </div>
+    <canvas id="emissionChart"></canvas>
+  </div>
+
+  <footer>
+    <p>Presented by <strong>Team MedicoTechs</strong></p>
+  </footer>
+
+  <script>
+    // Initial data for the chart
+    const chartData = {
+      month: {
+        labels: ['Diesel', 'Petrol', 'Coal', 'Electricity', 'Natural Gas'],
+        data: [50, 40, 20, 30, 15]
+      },
+      six_months: {
+        labels: ['Diesel', 'Petrol', 'Coal', 'Electricity', 'Natural Gas'],
+        data: [300, 250, 120, 180, 90]
+      },
+      year: {
+        labels: ['Diesel', 'Petrol', 'Coal', 'Electricity', 'Natural Gas'],
+        data: [600, 500, 240, 360, 180]
+      }
+    };
+
+    // Chart configuration
+    let emissionChart;
+    function createChart(labels, data) {
+      const ctx = document.getElementById('emissionChart').getContext('2d');
+      if (emissionChart) {
+        emissionChart.destroy();
+      }
+      emissionChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Carbon Emission',
+            data: data,
+            backgroundColor: [
+              'rgba(46, 204, 113, 0.7)',
+              'rgba(52, 152, 219, 0.7)',
+              'rgba(231, 76, 60, 0.7)',
+              'rgba(241, 196, 15, 0.7)',
+              'rgba(155, 89, 182, 0.7)'
+            ],
+            borderColor: [
+              'rgba(46, 204, 113, 1)',
+              'rgba(52, 152, 219, 1)',
+              'rgba(231, 76, 60, 1)',
+              'rgba(241, 196, 15, 1)',
+              'rgba(155, 89, 182, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Carbon Emissions by Fuel Type'
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+
+    // Update chart and toggle button state
+    function updateChart(period) {
+      const { labels, data } = chartData[period];
+      createChart(labels, data);
+
+      // Toggle active state for buttons
+      document.querySelectorAll('.btn').forEach(button => button.classList.remove('active'));
+      const activeButton = document.querySelector(`#btn-${period.replace('_', '-')}`);
+      if (activeButton) activeButton.classList.add('active');
+    }
+
+    // Initialize with monthly data
+    updateChart('month');
+  </script>
+</body>
+</html>

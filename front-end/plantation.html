@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Plantation</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/upload.css">
+  <script src="js/common.js" defer></script>
+  <style>
+    .preview-container {
+      display: flex;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .image-preview {
+      width: 200px;
+      height: 200px;
+      border: 2px dashed #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .image-preview img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    .prediction-result {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 5px;
+      text-align: center;
+      display: none;
+    }
+    .loading {
+      display: none;
+      text-align: center;
+      margin: 20px 0;
+    }
+    .error-message {
+      color: red;
+      margin: 10px 0;
+      display: none;
+      padding: 10px;
+      background-color: #ffe6e6;
+      border-radius: 4px;
+    }
+    .success-message {
+      color: green;
+      margin: 10px 0;
+      display: none;
+      padding: 10px;
+      background-color: #e6ffe6;
+      border-radius: 4px;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 20px;
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 10px 0;
+      display: none;
+    }
+    .progress {
+      width: 0%;
+      height: 100%;
+      background-color: #4CAF50;
+      transition: width 0.3s ease;
+    }
+    .image-requirements {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .image-requirements h4 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .image-requirements ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .image-requirements li {
+      margin-bottom: 8px;
+      padding-left: 24px;
+      position: relative;
+    }
+    .image-requirements li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #4CAF50;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo" class="logo-img"> 
+      <span class="project-name">EcoTrack: Towards a cleaner Earth</span>
+    </div>
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="calculator.html">Calculate Solar Panel Cost</a>
+      <a href="project/community-view.html">Community hub</a>
+      <a href="plantation.html" class="active">Upload Plantation</a>
+      <a href="about.html">About Us</a>
+      <a href="profile.html" class="profile-btn">Profile</a>
+    </div>
+  </div>
+
+  <!-- Page Content -->
+  <div class="info-box">
+    <h2>Upload Plantation Image</h2>
+    <p>
+      Earn carbon credits by uploading geo-tagged images of your plantation efforts. 
+      Upload pictures following the guidelines below to track your contributions to a greener planet.
+    </p>
+  </div>
+
+  <!-- Guidelines Section -->
+  <div class="guidelines">
+    <h3>Guidelines for Uploading Pictures</h3>
+    <ul>
+      <li>The pictures must be geo-tagged automatically (no separate geo-location entry required).</li>
+      <li>Upload three images of the same tree showing its different growth stages.</li>
+      <li>The images should be clear, well-lit, and focused on the planted tree.</li>
+      <li>Ensure no other trees are in the frame to avoid confusion.</li>
+      <li>Example images are provided below for reference.</li>
+    </ul>
+  </div>
+
+  <!-- Upload Form Section -->
+  <div class="statistics">
+    <h3>Submit Your Plantation</h3>
+    <div class="error-message"></div>
+    <div class="success-message"></div>
+    
+    <form id="upload-plantation-form" class="statistics-inner">
+      <div class="preview-container">
+        <div class="image-preview" id="preview1">
+          <span>Image 1</span>
+          <div class="prediction-result"></div>
+        </div>
+        <div class="image-preview" id="preview2">
+          <span>Image 2 (Optional)</span>
+          <div class="prediction-result"></div>
+        </div>
+        <div class="image-preview" id="preview3">
+          <span>Image 3 (Optional)</span>
+          <div class="prediction-result"></div>
+        </div>
+      </div>
+
+      <div class="image-requirements">
+        <h4>Image Requirements</h4>
+        <ul>
+          <li>Upload at least one image of your plantation</li>
+          <li>File format: JPG, JPEG, or PNG</li>
+          <li>Maximum file size: 5MB per image</li>
+          <li>Minimum resolution: 800x600 pixels</li>
+          <li>Must be clear and well-lit</li>
+        </ul>
+      </div>
+
+      <label for="image1">Upload Image 1 (Primary Image):</label><br>
+      <input type="file" id="image1" name="image1" accept="image/*" required><br><br>
+
+      <label for="image2">Upload Image 2 (Optional):</label><br>
+      <input type="file" id="image2" name="image2" accept="image/*"><br><br>
+
+      <label for="image3">Upload Image 3 (Optional):</label><br>
+      <input type="file" id="image3" name="image3" accept="image/*"><br><br>
+
+      <label for="description">Description:</label><br>
+      <textarea id="description" name="description" rows="4" placeholder="Briefly describe your plantation efforts..." required></textarea><br><br>
+
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+
+      <div class="loading">
+        <img src="images/loading.gif" alt="Loading..." style="width: 50px;">
+        <p>Processing your submission...</p>
+      </div>
+
+      <button type="submit" class="profile-btn">Submit Plantation</button>
+    </form>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-left">
+        <img src="images/sih.png" alt="SIH 2024 Logo" class="footer-logo">
+        <img src="images/moe.jpeg" alt="MoE Logo" class="footer-logo">
+        <p>Presented by <strong>Team MedicoTechs</strong></p>
+      </div>
+      <div class="footer-right">
+        <div class="footer-links">
+          <a href="home.html">Home      |</a>
+          <a href="about.html">  About Us      |</a>
+          <a href="#">  Contact      |</a>
+          <a href="#">  Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('upload-plantation-form');
+      const loading = document.querySelector('.loading');
+      const errorMessage = document.querySelector('.error-message');
+      const successMessage = document.querySelector('.success-message');
+      const progressBar = document.querySelector('.progress-bar');
+      const progress = document.querySelector('.progress');
+
+      // // Check if user is logged in
+      // const checkAuth = async () => {
+      //   try {
+      //     const response = await fetch('../backend/api/check_auth.php', {
+      //       method: 'GET',
+      //       credentials: 'include'
+      //     });
+      //     const result = await response.json();
+      //     if (!result.success) {
+      //       window.location.href = 'index.html';
+      //     }
+      //     return result.user;
+      //   } catch (error) {
+      //     console.error('Auth check failed:', error);
+      //     window.location.href = 'index.html';
+      //   }
+      // };
+
+      // // Check authentication
+      // const user = checkAuth();
+      // if (!user) return;
+
+      // Preview image uploads
+      ['image1', 'image2', 'image3'].forEach((id, index) => {
+        const input = document.getElementById(id);
+        const preview = document.getElementById(`preview${index + 1}`);
+        
+        input.addEventListener('change', function(e) {
+          const file = e.target.files[0];
+          if (file) {
+            // Validate file size
+            if (file.size > 5 * 1024 * 1024) {
+              errorMessage.textContent = 'File size must be less than 5MB';
+              errorMessage.style.display = 'block';
+              input.value = '';
+              return;
+            }
+
+            // Validate file type
+            if (!['image/jpeg', 'image/jpg', 'image/png'].includes(file.type)) {
+              errorMessage.textContent = 'Only JPG, JPEG, and PNG files are allowed';
+              errorMessage.style.display = 'block';
+              input.value = '';
+              return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              preview.innerHTML = `
+                <img src="${e.target.result}" alt="Preview">
+                <div class="prediction-result"></div>
+              `;
+            };
+            reader.readAsDataURL(file);
+          } else {
+            // Clear preview if no file selected
+            preview.innerHTML = `<span>Image ${index + 1}${index === 0 ? '' : ' (Optional)'}</span><div class="prediction-result"></div>`;
+          }
+        });
+      });
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Verify auth before submission
+        const currentUser = await checkAuth();
+        if (!currentUser) return;
+
+        // Check if at least one image is uploaded
+        const image1 = document.getElementById('image1').files[0];
+        if (!image1) {
+          errorMessage.textContent = 'Please upload at least one image';
+          errorMessage.style.display = 'block';
+          return;
+        }
+
+        errorMessage.style.display = 'none';
+        successMessage.style.display = 'none';
+        loading.style.display = 'block';
+        progressBar.style.display = 'block';
+        progress.style.width = '0%';
+
+        try {
+          const formData = new FormData(form);
+          
+          // Upload images and get predictions
+          const response = await fetch('../backend/api/submit_plantation.php', {
+            method: 'POST',
+            body: formData,
+            credentials: 'include'
+          });
+
+          const result = await response.json();
+          
+          if (result.success) {
+            successMessage.textContent = 'Plantation submitted successfully! Our team will review your submission.';
+            successMessage.style.display = 'block';
+            form.reset();
+            
+            // Clear image previews
+            document.querySelectorAll('.image-preview').forEach((preview, index) => {
+              preview.innerHTML = `<span>Image ${index + 1}${index === 0 ? '' : ' (Optional)'}</span><div class="prediction-result"></div>`;
+            });
+
+            // Redirect to dashboard after 3 seconds
+            setTimeout(() => {
+              window.location.href = 'dashboard.html';
+            }, 3000);
+          } else {
+            throw new Error(result.message || 'Failed to submit plantation');
+          }
+        } catch (error) {
+          console.error('Submission error:', error);
+          errorMessage.textContent = error.message || 'An error occurred while submitting your plantation.';
+          errorMessage.style.display = 'block';
+        } finally {
+          loading.style.display = 'none';
+          progressBar.style.display = 'none';
+        }
+      });
+
+      // Simulate upload progress
+      function updateProgress(value) {
+        progress.style.width = `${value}%`;
+      }
+    });
+  </script>
+</body>
+</html>

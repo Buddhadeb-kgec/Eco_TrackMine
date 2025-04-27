@@ -1,0 +1,51 @@
+.table-container {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.company-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.company-table th,
+.company-table td {
+    padding: 0.75rem 1.5rem;
+    text-align: left;
+}
+
+.company-table th {
+    background-color: var(--gray-50);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gray-700);
+}
+
+.company-table tr {
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.company-table tr:last-child {
+    border-bottom: none;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: var(--danger-color);
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.delete-btn:hover {
+    color: var(--danger-hover);
+}
+
+.delete-btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}

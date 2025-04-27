@@ -1,0 +1,171 @@
+/* General Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #34495e, #2ecc71);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .profile-container {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 600px;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  /* Header Styling */
+  .profile-container h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #27ae60;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  
+  /* Profile Details */
+  .profile-details {
+    margin-bottom: 30px;
+  }
+  
+  .profile-details h2 {
+    font-size: 1.5rem;
+    margin: 15px 0;
+    color: #34495e;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Modern Form Styling */
+  .profile-form {
+    margin-top: 20px;
+    padding: 25px;
+    background: linear-gradient(135deg, #ecf0f1, #dfe6e9);
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .profile-form input,
+  .profile-form select,
+  .profile-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #34495e;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background: #f9f9f9;
+  }
+  
+  .profile-form input:focus,
+  .profile-form select:focus,
+  .profile-form textarea:focus {
+    border-color: #27ae60;
+    outline: none;
+    box-shadow: 0 0 8px rgba(39, 174, 96, 0.6);
+    background: #fff;
+  }
+  
+  .profile-form button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2rem;
+    color: #fff;
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  .profile-form button:hover {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    transform: scale(1.05);
+  }
+  
+  /* Profile Actions */
+  .profile-actions h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #27ae60;
+    border-bottom: 3px solid #27ae60;
+    padding-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+  
+  .profile-actions ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .profile-actions ul li {
+    margin: 12px 0;
+  }
+  
+  .profile-actions ul li a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: #fff;
+    display: block;
+    background-color: #27ae60;
+    padding: 12px 18px;
+    border-radius: 10px;
+    transition: background-color 0.4s, transform 0.2s;
+    text-align: center;
+  }
+  
+  .profile-actions ul li a:hover {
+    background-color: #2ecc71;
+    transform: translateY(-3px);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .profile-container {
+      padding: 25px 30px;
+    }
+  
+    .profile-container h1 {
+      font-size: 2.2rem;
+    }
+  
+    .profile-details h2,
+    .profile-actions h3 {
+      font-size: 1.3rem;
+    }
+  
+    .profile-actions ul li a {
+      font-size: 1rem;
+    }
+  
+    .profile-form {
+      padding: 20px;
+    }
+  
+    .profile-form button {
+      font-size: 1.1rem;
+    }
+  }
+  

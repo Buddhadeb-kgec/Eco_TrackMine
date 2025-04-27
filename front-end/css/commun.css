@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.company-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.company-table th, .company-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.company-table th {
+    background-color: #f2f2f2;
+}
+
+.company-table a {
+    text-decoration: none;
+    color: blue;
+}
+
+.community-forum {
+    margin-top: 20px;
+    /* Add your forum styling here */
+}
+
+.add-btn, .remove-btn {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-btn {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.remove-btn {
+    background-color: #dc3545;
+    color: #fff;
+}

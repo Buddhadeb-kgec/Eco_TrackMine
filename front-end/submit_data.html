@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Mining Data - EcoTrack</title>
+  <link rel="stylesheet" href="css/onlydatasub.css">
+  <link rel="stylesheet" href="css/common.css">
+  <script src="js/common.js" defer></script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo" class="logo-img"> <!-- Replace with your logo -->
+      <span class="project-name">EcoTrack: Reducing Coal Emissions</span>
+    </div>
+    <div class="nav-links">
+      <a href="homemine.html">Home</a>
+      <a href="submit_data.html">Submit Data</a>
+      <a href="visual2.html">Emission visualization</a>
+      <a href="project/index.html">Community</a>
+      <a href="about_us.html">About Us</a>
+      <div class="profile-section">
+        <a href="profile.html" class="profile-btn">Profile</a>
+        <div class="profile-dropdown" id="profileDropdown">
+          <!-- Dynamic content -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="form-container">
+    <h2>Submit Mining Data</h2>
+    <p>Fill in the details below to calculate your mining operations' carbon emissions. This data will contribute to tracking and reducing environmental impact.</p>
+
+    <form action="../backend/submit data/submit_data_backend.php" method="POST">
+       <h1>Mining Data Submission</h1>
+  <div class="form-container">
+      <form id="data-form">
+          <h2>Group 1: Direct Emissions</h2>
+          <label for="coal-extraction">Coal Extraction (tons):</label>
+          <input type="number" id="coal-extraction" required><br><br>
+  
+          <label for="coal-type">Coal Type:</label>
+          <select id="coal-type" required>
+              <option value="bituminous">Bituminous</option>
+              <option value="sub-bituminous">Sub-bituminous</option>
+              <option value="anthracite">Anthracite</option>
+              <option value="lignite">Lignite</option>
+          </select><br><br>
+  
+          <label for="methane-leakage">Methane Leakage (m<sup>3</sup>):</label>
+          <input type="number" id="methane-leakage" required><br><br>
+  
+          <h2>Group 2: Energy Consumption</h2>
+          <label for="electricity">Electricity Usage (kWh):</label>
+          <input type="number" id="electricity" required><br><br>
+  
+          <label for="diesel">Diesel Usage (liters):</label>
+          <input type="number" id="diesel" required><br><br>
+  
+          <label for="petrol">Petrol Usage (liters):</label>
+          <input type="number" id="petrol" required><br><br>
+  
+          <h2>Group 3: Indirect Emissions</h2>
+          <label for="waste-coal">Waste Coal (tons):</label>
+          <input type="number" id="waste-coal" required><br><br>
+  
+          <label for="mine-depth">Mine Depth (meters):</label>
+          <input type="number" id="mine-depth" required><br><br>
+  
+          <label for="area-factors">Mine Area Factors (tons/hectare/year):</label>
+          <input type="number" id="area-factors" required><br><br>
+  
+          <label for="explosions">Explosions (per year):</label>
+          <input type="number" id="explosions" required><br><br>
+  
+          <p><em>Note: Emission factors are pre-applied for accuracy.</em></p>
+          <button type="submit">Submit</button>
+      </form>
+  </div>
+
+  <p class="hint">Emission factors are pre-applied based on industry standards for accuracy.</p>
+</fieldset>
+
+
+      <!-- Sustainability Initiatives -->
+      <fieldset>
+        <legend>Sustainability Initiatives</legend>
+        <label for="sustainability_initiatives">Describe Sustainability Efforts:</label>
+        <textarea id="sustainability_initiatives" name="sustainability_initiatives" rows="4" placeholder="Outline any carbon offset programs or green initiatives implemented."></textarea>
+      </fieldset>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button type="submit" class="submit-btn">Submit data</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-left">
+        <img src="images/sih.png" alt="SIH 2024 Logo" class="footer-logo">
+        <img src="images/moe.jpeg" alt="MoE Logo" class="footer-logo">
+        <p>Presented by <strong>Team MedicoTechs</strong></p>
+      </div>
+      <div class="footer-right">
+        <div class="footer-links">
+          <a href="homemine.html">Home</a>
+          <a href="about_us.html">About Us</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy_policy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coal Company Community Hub</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/modal.css">
+    <link rel="stylesheet" href="../styles/table.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <script src="../js/common.js" defer></script>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .project-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #1abc9c;
+        }
+
+        .profile-btn {
+            background-color: #1abc9c;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .profile-btn:hover {
+            background-color: #16a085;
+        }
+
+        /* Table Styles */
+        .table-container {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .company-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .company-table th, .company-table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .company-table th {
+            background-color: #2c3e50;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .company-table tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 10px 15px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #1abc9c;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #16a085;
+        }
+
+        .btn-secondary {
+            background-color: #ccc;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background-color: #bbb;
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.3s, opacity 0.3s;
+        }
+
+        .modal.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .footer-links a {
+            color: #1abc9c;
+            text-decoration: none;
+            margin: 0 5px;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #16a085;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        /* Delete Button */
+        .delete-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .empty-state p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #addCompanyBtn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Modal Close Button */
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .close-button svg {
+            width: 20px;
+            height: 20px;
+            color: #666;
+        }
+
+        .close-button:hover svg {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Horizontal Bar -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="../images/logo.png" alt="Logo" class="logo-img">
+            <span class="project-name">EcoTrack: Towards a cleaner Earth</span>
+        </div>
+        <div class="nav-links">
+            <a href="../front-end/homemine.html">Home</a>
+            <a href="../front-end/submit_data.html">Submit Data</a>
+            <a href="../front-end/visual2.html">Emission Visualization</a>
+            <a href="../front-end/about_us.html" class="active">About Us</a>
+            <a href="../front-end/profile.html" class="profile-btn">Profile</a>
+        </div>
+    </div>
+    <div class="container">
+        <header class="header">
+            <h1>Coal Company Community Hub</h1>
+            <button id="addCompanyBtn" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                Add Company
+            </button>
+        </header>
+
+        <div id="emptyState" class="empty-state">
+            <p>No companies added yet. Click the button above to add one.</p>
+        </div>
+
+        <div class="table-container">
+            <table id="companyTable" class="company-table">
+                <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Location</th>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="companyTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button id="closeModal" class="close-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+            <h2>Add New Company</h2>
+            <form id="companyForm">
+                <div class="form-group">
+                    <label for="name">Company Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Company</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/modal.js"></script>
+    <script src="../js/table.js"></script>
+    <script src="../js/app.js"></script>
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <img src="../images/sih.png" alt="SIH 2024 Logo" class="footer-logo"> 
+                <img src="../images/moe.jpeg" alt="MoE Logo" class="footer-logo">
+                <p>Presented by <strong>Team MedicoTechs</strong></p>
+            </div>
+            <div class="footer-right">
+                <div class="footer-links">
+                    <a href="../homemine.html">Home      |</a>
+                    <a href="../about_us.html">  About Us      |</a>
+                    <a href="#">  Contact      |</a>
+                    <a href="#">  Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
